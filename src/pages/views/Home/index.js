@@ -12,7 +12,7 @@ function Home() {
             <Sider />
             <Layout>
                 <Header />
-                <Layout.Content>
+                <Layout.Content className='content'>
                     <Router>
                         <Switch>
                             {menu.map(m => {

@@ -1,3 +1,5 @@
+import './index.scss'
+import 'antd/dist/antd.css';
 import React from "react";
 import * as ReactDOM from "react-dom";
 const createHashHistory  = require("history").createHashHistory;

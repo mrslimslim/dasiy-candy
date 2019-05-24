@@ -7,12 +7,14 @@ import PageLoading from '@components/PageLoading'
 import Error from '@components/Error'
 import PrivateRoute from '@shared/PrivateRoute'
 
+import './index.scss';
+
 const Home = Loadable({
     loader: () => import(/* webpackChunkName: "home" */ '@views/Home'),
     loading: PageLoading
 })
 
-const AppWrapper = props => <div>{props.children}</div>
+const AppWrapper = props => <div className="appWrapper">{props.children}</div>
 
 class AppRouter extends React.Component {
     render() {

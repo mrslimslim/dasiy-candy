@@ -1,5 +1,4 @@
 import Loadable from 'react-loadable'
-
 import PageLoading from '@components/PageLoading'
 
 const loadComponent = (loader) =>
@@ -9,17 +8,26 @@ const loadComponent = (loader) =>
     })
 
 export const asynchronousComponents = {
-    Dashboard: loadComponent(() => import(/* webpackChunkName: "dashboard" */ '@views/Dashboard'))
+    PlayGround: loadComponent(() => import(/* webpackChunkName: "playground" */ '@views/PlayGround'))
 }
 
 export const menu = [
     {
         id: 1,
-        path: '/',
-        title: 'Dashboard',
+        // path: '/',
+        title: 'PlayGround',
         icon: 'dashboard',
-        component: 'Dashboard',
+        // component: 'PlayGround',
+        // exact: true
+    },{
+        pid:1,
+        id:11,
+        path: '/',
+        title: 'market',
+        component: 'PlayGround',
         exact: true
+
+        
     }
 ]
 

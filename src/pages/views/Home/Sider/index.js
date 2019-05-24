@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
 import { Layout, Icon, Switch } from 'antd'
+import classnames from 'classnames'
+import SiderMenu from './Menu'
+import "./index.scss"
 
 
 export default class Sider extends Component {
     handleThemeChange = (e) => {
-        this.props.changeSiderTheme(e ? 'dark' : 'light')
+        this.setState({
+            sideBarTheme: e ? 'dark' : 'light'
+        })
+    }
+
+    state = {
+        sideBarTheme: 'light',
+        sideBarCollapsed: false
     }
 
     render() {
-        const { sideBarCollapsed, sideBarTheme } = this.props
+        const { sideBarCollapsed, sideBarTheme } = this.state
         const ChangeTheme = (
-            <div className={classnames(styles.changeTheme, sideBarTheme === 'dark' && styles.dark)}>
+            <div  className={classnames('changeTheme', sideBarTheme === 'dark' && 'dark')}>
                 Switch Theme
                 <Switch
                     checkedChildren="dark"
@@ -22,13 +32,13 @@ export default class Sider extends Component {
         )
         return (
             <Layout.Sider
-                className={styles.sider}
+                className={'candy-sider-container'}
                 trigger={null}
                 theme={sideBarTheme}
                 collapsible
                 collapsed={sideBarCollapsed}
             >
-                <div className={classnames(styles.logoBox, sideBarTheme === 'dark' && styles.dark)}>
+                <div className={classnames('logoBox', sideBarTheme === 'dark' && 'dark')}>
                     <Icon type="ant-design" />
                 </div>
                 <SiderMenu />

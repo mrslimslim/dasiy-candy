@@ -5,7 +5,11 @@ import menu from './../menu'
 import { arrayToTree } from '@utils/index'
 const { SubMenu } = Menu
 
-export default class Menu extends Component {
+export default class SiderMenu extends Component {
+    state = {
+        sideBarTheme: 'light'
+    }
+
     getPathArray = (array, current) => {
         const result = [String(current.id)]
         const getPath = (item) => {
@@ -48,7 +52,7 @@ export default class Menu extends Component {
 
     render() {
         this.levelMap = {}
-        const { sideBarTheme } = this.props
+        const { sideBarTheme } = this.state
         this.menuTree = arrayToTree(menu);
         const menuItems = this.getMenus(this.menuTree)
         // 寻找选中路由
@@ -68,7 +72,7 @@ export default class Menu extends Component {
         }
         return (
             <Menu
-                className={styles.menu}
+                className='menu'
                 theme={sideBarTheme}
                 mode="inline"
                 selectedKeys={selectedKeys}
