@@ -1,0 +1,18 @@
+/* Reset existing styling that may be applied by browsers */
+
+* {
+	margin:0;
+	padding:0
+}
+
+/* Paul Irish box sixing fix */
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* don't focus with outline */
+*:focus {
+	outline: none;
+}
