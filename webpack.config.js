@@ -30,6 +30,10 @@ module.exports = {
                 ]
             },
             {
+                test: /\.(eot|ttf|svg|woff2?)(\?.*)?$/,
+                loader: "url-loader?limit=100&name=fonts/[name].[ext]"
+            },
+            {
                 test: /\.css$/,
                 use: [
                   {

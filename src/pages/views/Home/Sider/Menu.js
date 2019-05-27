@@ -43,7 +43,7 @@ export default class SiderMenu extends Component {
             }
             return (
                 <Menu.Item key={String(item.id)}>
-                    {item.icon && <Icon type={item.icon} />}
+                    {item.icon && <i className='iconfont icon-emojiflashfill'></i>}
                     <span>{item.title}</span>
                 </Menu.Item>
             )
