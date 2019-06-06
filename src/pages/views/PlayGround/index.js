@@ -1,44 +1,40 @@
 import React, { Component } from 'react'
 import { Input } from 'antd'
+import { observer, inject } from 'mobx-react'
+import { hot } from 'react-hot-loader'
 
-export default class PlayGround extends Component {
-    static getDerivedStateFromProps(){
-        console.log('getDerivedStateFromProps')
-        return null;
-    }
-
-    state ={
-        value:'hello world'
-    }
-
-    shouldComponentUpdate(){
-        return true;
-    }
-
+@inject('playGroundStore')
+@observer    
+class PlayGround extends Component {
     componentDidMount(){
+        console.log(this.props)
         console.log('componentDidMount')
     }
-
+    
     getSnapshotBeforeUpdate(){
         console.log('getSnapshotBeforeUpdate')
         return null;
     }
-
+    
     componentDidUpdate(){
         console.log('componentDidUpdate');
     }
-    onChange =(value)=>{
-        this.setState({
-            value
-        })
+    
+    onChange =(e)=>{
+      const { playGroundStore } = this.props;
+      console.log(playGroundStore);
+      playGroundStore.changeName(e.target.value)
     }
-
+    
     render() {
-        console.log('render');
+        const { playGroundStore } = this.props;
         return (
             <div>
-                <Input defaultValue={this.state.value} onChange={this.onChange}/>
+                <Input value={playGroundStore.data.name} onChange={this.onChange}/>
             </div>
         )
     }
 }
+
+
+export default PlayGround;

@@ -1,7 +1,10 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 var webpack = require('webpack');
+
 
 module.exports = {
     entry:{
@@ -10,7 +13,9 @@ module.exports = {
     output:{
         filename:'[name].[hash].js'
     },
+    devtool:'source-map',
     module:{
+        noParse:'/lodash/',
         rules:[
             {
                 // this is so that we can compile any React,
@@ -19,7 +24,7 @@ module.exports = {
                 // we do not want anything from node_modules to be compiled
                 exclude: /node_modules/,
                 // 开启缓存将转译结果缓存至文件系统
-                use: ['babel-loader'],
+                use: ['babel-loader']
             },
             {
                 test:/\.(css|scss)/,
@@ -72,7 +77,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template:path.join(__dirname,'src','index.html')
+            template:path.join(__dirname,'src','index.html'),
+            vendor: './dll.vendor_dll.js',
         }),
         new webpack.HashedModuleIdsPlugin(),
         new MiniCssExtractPlugin({
@@ -80,27 +86,31 @@ module.exports = {
             // both options are optional
             filename: "[name].[contenthash].css",
         }),
-        new webpack.HotModuleReplacementPlugin()
-
+        new webpack.HotModuleReplacementPlugin(),
+        // new CleanWebpackPlugin()
     ],
     
-    optimization: {
-        splitChunks: {
-          chunks: 'all',
-          maxInitialRequests: Infinity,
-          minSize: 0,
-          name: true,
-          cacheGroups: {
-            vendors: {
-              test: /[\\/]node_modules[\\/]/,
-              priority: -10
-            },
-            default: {
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true
-            }
-          }
-        }
-    }
+    // optimization: {
+    //     splitChunks: {
+    //       chunks: 'all',
+    //       maxInitialRequests: Infinity,
+    //       minSize: 0,
+    //       name: true,
+    //       cacheGroups: {
+    //         reactBase: {
+    //             name: 'reactBase',
+    //             test: (module) => {
+    //                 return /react/.test(module.context);
+    //             },
+    //             chunks: 'initial',
+    //             priority: 10,
+    //           },
+    //         default: {
+    //           minChunks: 2,
+    //           priority: -20,
+    //           reuseExistingChunk: true
+    //         }
+    //       }
+    //     }
+    // }
 };

@@ -39,7 +39,7 @@ export default class Sider extends Component {
                 collapsed={sideBarCollapsed}
             >
                 <div className={classnames('logoBox', sideBarTheme === 'dark' && 'dark')}>
-                    <i className='iconfont icon-emojiflashfill'></i>
+                    <i style={{fontSize:'64px'}} className='iconfont icon-emojiflashfill'></i>
                 </div>
                 <SiderMenu />
                 {!sideBarCollapsed && ChangeTheme}

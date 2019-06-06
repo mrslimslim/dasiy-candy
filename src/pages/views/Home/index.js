@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { Layout } from 'antd'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, withRouter } from 'react-router-dom'
 import menu, { asynchronousComponents } from "./menu"
 import { hot } from 'react-hot-loader'
 import Sider from './Sider'
 import Header from './Header'
+import { observer, inject } from 'mobx-react'
+ 
 
-function Home() {
+function Home(props) {
     return (
         <Layout>
             <Sider />
@@ -37,7 +39,7 @@ function Home() {
     )
 }
 
-export default hot(module)(Home);
+export default inject('playGroundStore')(observer(Home));
 
 
 

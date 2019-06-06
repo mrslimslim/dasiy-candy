@@ -26,8 +26,6 @@ export const menu = [
         title: 'market',
         component: 'PlayGround',
         exact: true
-
-        
     }
 ]
 
